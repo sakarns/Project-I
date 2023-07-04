@@ -40,6 +40,7 @@ if (isset($message)) {
          <a href="wishlist.php"><i class="fas fa-heart"></i><span>(<?= $total_wishlist_counts; ?>)</span></a>
          <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(<?= $total_cart_counts; ?>)</span></a>
          <div id="user-btn" class="fas fa-user"></div>
+         <a href="admin/admin_login.php" class="fas fa-user-tie"></a>
       </div>
 
       <div class="profile">
