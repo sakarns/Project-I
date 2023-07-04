@@ -47,33 +47,33 @@ include 'components/wishlist_cart.php';
 
                <div class="swiper-slide slide">
                   <div class="image">
-                     <img src="images/home-img-1.png" alt="">
+                     <img src="images/Agricultural Hand Gloves For Industrial Use.png" alt="">
                   </div>
                   <div class="content">
                      <span>upto 50% off</span>
-                     <h3>latest smartphones</h3>
+                     <h3>Protective gloves</h3>
                      <a href="shop.php" class="btn">shop now</a>
                   </div>
                </div>
 
                <div class="swiper-slide slide">
                   <div class="image">
-                     <img src="images/home-img-2.png" alt="">
+                     <img src="images/Appron.jpg" alt="">
                   </div>
                   <div class="content">
                      <span>upto 50% off</span>
-                     <h3>latest watches</h3>
+                     <h3>Protective Appron</h3>
                      <a href="shop.php" class="btn">shop now</a>
                   </div>
                </div>
 
                <div class="swiper-slide slide">
                   <div class="image">
-                     <img src="images/home-img-3.png" alt="">
+                     <img src="images/Dust Mask-Chinese.jpg" alt="">
                   </div>
                   <div class="content">
                      <span>upto 50% off</span>
-                     <h3>latest headsets</h3>
+                     <h3>Protective Mask</h3>
                      <a href="shop.php" class="btn">shop now</a>
                   </div>
                </div>
@@ -96,44 +96,49 @@ include 'components/wishlist_cart.php';
 
          <div class="swiper-wrapper">
 
-            <a href="category.php?category=laptop" class="swiper-slide slide">
-               <img src="images/icon-1.png" alt="">
-               <h3>laptop</h3>
+            <a href="category.php?category=chemical-fertilizer" class="swiper-slide slide">
+               <img src="images/home-icon-fertilizer.png" alt="">
+               <h3>Chemical Fertilizer</h3>
             </a>
 
-            <a href="category.php?category=tv" class="swiper-slide slide">
-               <img src="images/icon-2.png" alt="">
-               <h3>tv</h3>
+            <a href="category.php?category=insecticides" class="swiper-slide slide">
+               <img src="images/home-icon-insecticides.webp" alt="">
+               <h3>Insecticides</h3>
             </a>
 
-            <a href="category.php?category=camera" class="swiper-slide slide">
-               <img src="images/icon-3.png" alt="">
-               <h3>camera</h3>
+            <a href="category.php?category=pesticides" class="swiper-slide slide">
+               <img src="images/home-icon-pesticides.png" alt="">
+               <h3>Pesticides</h3>
             </a>
 
-            <a href="category.php?category=mouse" class="swiper-slide slide">
-               <img src="images/icon-4.png" alt="">
-               <h3>mouse</h3>
+            <a href="category.php?category=gardening-tools" class="swiper-slide slide">
+               <img src="images/home-icon-guardening-tools.png" alt="">
+               <h3>Gardening Tools</h3>
             </a>
 
-            <a href="category.php?category=fridge" class="swiper-slide slide">
-               <img src="images/icon-5.png" alt="">
-               <h3>fridge</h3>
+            <a href="category.php?category=agricultural-equipments" class="swiper-slide slide">
+               <img src="images/home-icon-agricultural-equipments.png" alt="">
+               <h3>Agricultural Equipments</h3>
             </a>
 
-            <a href="category.php?category=washing" class="swiper-slide slide">
-               <img src="images/icon-6.png" alt="">
-               <h3>washing machine</h3>
+            <a href="category.php?category=protective-gears" class="swiper-slide slide">
+               <img src="images/home-icon-protective-gears.webp" alt="">
+               <h3>Protective Gears</h3>
             </a>
 
-            <a href="category.php?category=smartphone" class="swiper-slide slide">
-               <img src="images/icon-7.png" alt="">
-               <h3>smartphone</h3>
+            <a href="category.php?category=reproductive-seeds" class="swiper-slide slide">
+               <img src="images/home-icon-reprodutive-seeds.webp" alt="">
+               <h3>Reproductive Seeds</h3>
             </a>
 
-            <a href="category.php?category=watch" class="swiper-slide slide">
-               <img src="images/icon-8.png" alt="">
-               <h3>watch</h3>
+            <a href="category.php?category=reproductive-fruits" class="swiper-slide slide">
+               <img src="images/home-icon-reproductive-fruits.webp" alt="">
+               <h3>Reproductive Fruits</h3>
+            </a>
+
+            <a href="category.php?category=reproductive-vegetable" class="swiper-slide slide">
+               <img src="images/home-icon-reproductive-vegetables.webp" alt="">
+               <h3>Reproductive Vegetables</h3>
             </a>
 
          </div>
