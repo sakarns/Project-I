@@ -237,7 +237,7 @@ section {
 }
 
 .home-bg {
-  background: url(../images/home-bg.png) no-repeat;
+  background: url(../images/bg-home7.jpg) no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -268,13 +268,13 @@ section {
 
 .home-bg .home .slide .content span {
   font-size: 2rem;
-  color: var(--white);
+  color: var(--main-color);
 }
 
 .home-bg .home .slide .content h3 {
   margin-top: 1rem;
   font-size: 4rem;
-  color: var(--white);
+  color: var(--red);
   text-transform: uppercase;
 }
 
