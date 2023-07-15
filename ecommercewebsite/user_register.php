@@ -1,5 +1,10 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
 include 'components/connect.php';
 
 session_start();
@@ -31,9 +36,44 @@ if (isset($_POST['submit'])) {
       if ($pass != $cpass) {
          $message[] = 'confirm password not matched!';
       } else {
+         // Generate a random 6-digit OTP
+         $otp = rand(100000, 999999);
+
+         // Send the OTP to the user's email
+         $mail = new PHPMailer(true);
+         try {
+            //Server settings
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'your_email@gmail.com';                     //SMTP username
+            $mail->Password   = 'your_email_password';                               //SMTP password
+            $mail->SMTPSecure = 'tls';         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+            $mail->Port       = 587;                                    //TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('your_email@gmail.com', 'Your Name');
+            $mail->addAddress($email);     //Add a recipient
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'OTP for registration';
+            $mail->Body    = "Your OTP is: $otp";
+
+            $mail->send();
+            $message[] = 'OTP sent to your email address';
+         } catch (Exception $e) {
+            $message[] = 'Error sending email: ' . $mail->ErrorInfo;
+         }
+
+         // Store the OTP in the session for validation
+         $_SESSION['otp'] = $otp;
+
+         // Store the user's details in the database
          $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(?,?,?)");
          $insert_user->execute([$name, $email, $cpass]);
-         $message[] = 'registered successfully, login now please!';
+         $message[] = 'registered successfully, please enter the OTP received on your email to verify your account!';
       }
    }
 }
@@ -63,22 +103,32 @@ if (isset($_POST['submit'])) {
 
    <section class="form-container">
 
+      <?php
+      if (isset($message)) {
+         foreach ($message as $msg) {
+            echo "<div class='message'>$msg</div>";
+         }
+      }
+      ?>
+
       <form action="" method="post">
          <h3>register now</h3>
          <input type="text" name="name" required placeholder="enter your username" maxlength="20" class="box">
          <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="submit" value="register now" class="btn" name="submit">
-         <p>already have an account?</p>
-         <a href="user_login.php" class="option-btn">login now</a>
+         <input type="password" name="cpass" required placeholder="confirm password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="text" name="otp" required placeholder="enter the OTP received on your email" maxlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <button type="submit" name="submit" class="btn">register</button>
       </form>
+
+      <p>already have an account? <a href="login.php">login here</a></p>
 
    </section>
 
+   <!-- jquery cdn link  -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-   <?php include 'components/footer.php'; ?>
-
+   <!-- custom js file link  -->
    <script src="js/script.js"></script>
 
 </body>
