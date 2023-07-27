@@ -3,11 +3,12 @@
 include 'components/connect.php';
 
 session_start();
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-    $select_user = $conn->prepare("SELECT email FROM `users` WHERE user_id = ?");
-    $select_user->execute([$user_id]);
+if (isset($_SESSION['id'])) {
+    $user_id = $_SESSION['id'];
+    $select_user = $conn->prepare("SELECT email FROM `users` WHERE id = ?");
+    $select_user->execute([$id]);
     $row = $select_user->fetch(PDO::FETCH_ASSOC);
+    var_dump($row);
     if ($row) {
         $email = $row['email'];
     } else {
@@ -45,7 +46,7 @@ if (isset($_SESSION['user_id'])) {
 
       <form action="" method="post">
          <h3>OTP Verification</h3>
-         <input type="email" name="otpemail" readonly class="box" value="<?php echo $email; ?>">
+         <input readonly class="box" value="<?php echo $email; ?>">
          <input type="text" name="otp_verify" required placeholder="enter otp from email" maxlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="Submit" class="btn" name="otp_verify">
          <p>don't have an account?</p>
