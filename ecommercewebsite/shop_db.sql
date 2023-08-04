@@ -151,7 +151,7 @@ CREATE TABLE
         `regDate` timestamp NOT NULL DEFAULT current_timestamp(),
         `emailOtp` int(6) DEFAULT NULL,
         `isEmailVerify` int(1) DEFAULT NULL,
-        `lastUpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+        `lastUpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
     ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 -- --------------------------------------------------------
