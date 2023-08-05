@@ -39,7 +39,7 @@ if (!isset($admin_id)) {
 
          <div class="box">
             <h3>welcome!</h3>
-            <p><?= $fetch_profile['name']; ?></p>
+            <p><?= $fetch_profile['username']; ?></p>
             <a href="update_profile.php" class="btn">update profile</a>
          </div>
 

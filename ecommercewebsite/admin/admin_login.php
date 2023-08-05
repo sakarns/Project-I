@@ -6,21 +6,31 @@ session_start();
 
 if (isset($_POST['submit'])) {
 
-   $name = $_POST['name'];
+   $name = $_POST['username'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-   $select_admin = $conn->prepare("SELECT * FROM `admins` WHERE name = ? AND password = ?");
+   $select_admin = $conn->prepare("SELECT * FROM `admins` WHERE username = ? AND password = ?");
    $select_admin->execute([$name, $pass]);
    $row = $select_admin->fetch(PDO::FETCH_ASSOC);
 
    if ($select_admin->rowCount() > 0) {
-      $_SESSION['admin_id'] = $row['id'];
-      header('location:dashboard.php');
-   } else {
-      $message[] = 'incorrect username or password!';
-   }
+      $admin_id = $row['id'];
+      // Check user table for admin designation and hasAdminAccount value
+      $select_user = $conn->prepare("SELECT * FROM `users` WHERE id = ? AND designation = 'admin' AND hasAdminAccount = 1");
+      $select_user->execute([$admin_id]);
+      $user_row = $select_user->fetch(PDO::FETCH_ASSOC);
+      if ($user_row || $row['userID'] === 0) {
+         $_SESSION['admin_id'] = $admin_id;
+         header('location:dashboard.php');
+         exit();
+      } else {
+          $message[] = 'You are not authorized to login as an admin.';
+      }
+  } else {
+      $message[] = 'Incorrect username or password!';
+  }
 }
 
 ?>
@@ -60,7 +70,7 @@ if (isset($_POST['submit'])) {
       <form action="" method="post">
          <h3>login now</h3>
          <p>default username = <span>admin</span> & password = <span>111</span></p>
-         <input type="text" name="name" required placeholder="enter your username" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="text" name="username" required placeholder="enter your username" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="login now" class="btn" name="submit">
       </form>

@@ -37,7 +37,7 @@ if (isset($message)) {
          $select_profile->execute([$admin_id]);
          $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
          ?>
-         <p><?= $fetch_profile['name']; ?></p>
+         <p><?= $fetch_profile['username']; ?></p>
          <a href="../admin/update_profile.php" class="btn">update profile</a>
          <div class="flex-btn">
             <a href="../admin/register_admin.php" class="option-btn">register</a>

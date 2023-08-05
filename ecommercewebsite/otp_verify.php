@@ -13,6 +13,11 @@ if (empty($_SESSION['email'])) {
    exit();
 }
 
+if (empty($_SESSION['designation'])) {
+   header("Location: user_register.php");
+   exit();
+}
+
 if (isset($_POST['verify_otp'])) {
    $otp = $_POST['otp'];
    $otp = filter_var($otp, FILTER_SANITIZE_STRING);
@@ -25,6 +30,11 @@ if (isset($_POST['verify_otp'])) {
    if ($row && $row['emailOtp'] == $otp) {
       $update_user = $conn->prepare("UPDATE `users` SET isEmailVerify = 1, emailOtp = NULL WHERE email = ?");
       $update_user->execute([$email]);
+      if ($_SESSION['designation'] === 'admin') {
+         $_SESSION['user_id'] = $user_id ;
+         header("Location: admin/admin_request.php");
+         exit();
+      } else
       header("Location: user_login.php");
       exit();
    } else {
