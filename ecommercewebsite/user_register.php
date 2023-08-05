@@ -74,9 +74,10 @@ if (isset($_POST['submit'])) {
             OTP: <b>' . $otp . '</b><br><br>
             If you have any questions or need further assistance, please feel free to contact us.<br><br>
             Best regards,<br>
-            nepalikrishak.com.np';
+            nepalikrishak.pvt.ltd';
 
             $mail->send();
+            $_SESSION["email"]=$email;
             echo 'Message has been sent.';
          } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -113,13 +114,14 @@ if (isset($_POST['submit'])) {
 
       <form action="" method="post">
          <h3>register now</h3>
-         <input type="text" name="name" required placeholder="enter your username" maxlength="20" class="box">
+         <input type="text" name="name" required placeholder="enter your fullname" maxlength="20" class="box">
          <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="register now" class="btn" name="submit">
          <p>already have an account?</p>
          <a href="user_login.php" class="option-btn">login now</a>
+         <a href="otp_verify.php" class="option-btn">Verify Otp</a>
       </form>
 
    </section>

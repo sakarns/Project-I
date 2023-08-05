@@ -1,5 +1,5 @@
 <?php
-if (isset($message)) {
+if (isset($message) && is_array($message)) {
    foreach ($message as $message) {
       echo '
          <div class="message">

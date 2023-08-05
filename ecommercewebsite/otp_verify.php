@@ -1,24 +1,37 @@
-<?php include 'components/connect.php';
+<?php
+include 'components/connect.php';
 session_start();
+
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
    $user_id = '';
 }
+
+if (empty($_SESSION['email'])) {
+   header("Location: user_register.php");
+   exit();
+}
+
 if (isset($_POST['verify_otp'])) {
    $otp = $_POST['otp'];
    $otp = filter_var($otp, FILTER_SANITIZE_STRING);
-   $select_user = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
-   $select_user->execute([$user_id]);
+
+   $email = $_SESSION['email'];
+   $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
+   $select_user->execute([$email]);
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
-   if ($row['emailOtp'] == $otp) {
-      $update_user = $conn->prepare("UPDATE `users` SET isEmailVerify = 1 WHERE id = ?");
-      $update_user->execute([$user_id]);
+
+   if ($row && $row['emailOtp'] == $otp) {
+      $update_user = $conn->prepare("UPDATE `users` SET isEmailVerify = 1, emailOtp = NULL WHERE email = ?");
+      $update_user->execute([$email]);
       header("Location: user_login.php");
+      exit();
    } else {
       $message = "Invalid OTP!";
    }
-} ?>
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,13 +58,12 @@ if (isset($_POST['verify_otp'])) {
 
       <form action="" method="post">
          <h3>OTP Verification</h3>
-         <input readonly class="box" value="<?php echo $row['email']; ?>">
+         <input readonly class="box" value="<?php echo $_SESSION['email']; ?>">
          <input type="text" name="otp" id="otp" required placeholder="enter otp from email" maxlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="Verify OTP" class="btn" name="verify_otp">
       </form>
 
    </section>
-
 
    <?php include 'components/footer.php'; ?>
 
