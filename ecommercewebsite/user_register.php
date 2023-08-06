@@ -79,14 +79,14 @@ if (isset($_POST['submit'])) {
                nepalikrishak.pvt.ltd';
 
             $mail->send();
-            $_SESSION["email"] = $email;
          } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
          }
-         if ($designation === 'admin') {
-            $_SESSION["designation"] = 'admin';
-            header('location:otp_verify.php?' . $user_id);
-         }
+         $_SESSION['email'] = $email;
+         $_SESSION['designation'] = $designation;
+         $_SESSION['userID'] = $row['id'];
+         header('location:otp_verify.php');
+         exit();
       }
    }
 }

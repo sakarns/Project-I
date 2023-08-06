@@ -1,5 +1,6 @@
 <?php
 include 'components/connect.php';
+
 session_start();
 
 if (isset($_SESSION['user_id'])) {
@@ -8,21 +9,16 @@ if (isset($_SESSION['user_id'])) {
    $user_id = '';
 }
 
-if (empty($_SESSION['email'])) {
-   header("Location: user_register.php");
-   exit();
-}
-
-if (empty($_SESSION['designation'])) {
-   header("Location: user_register.php");
-   exit();
+if (isset($_SESSION['email'])) {
+   $email = $_SESSION['email'];
+} else {
+   $message[] = 'Email address not found.';
+   $email = '';
 }
 
 if (isset($_POST['verify_otp'])) {
    $otp = $_POST['otp'];
    $otp = filter_var($otp, FILTER_SANITIZE_STRING);
-
-   $email = $_SESSION['email'];
    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
    $select_user->execute([$email]);
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
@@ -30,15 +26,16 @@ if (isset($_POST['verify_otp'])) {
    if ($row && $row['emailOtp'] == $otp) {
       $update_user = $conn->prepare("UPDATE `users` SET isEmailVerify = 1, emailOtp = NULL WHERE email = ?");
       $update_user->execute([$email]);
-      if ($_SESSION['designation'] === 'admin') {
-         $_SESSION['user_id'] = $user_id ;
-         header("Location: admin/admin_request.php");
-         exit();
-      } else
-      header("Location: user_login.php");
-      exit();
    } else {
       $message = "Invalid OTP!";
+   }
+   if ($row['designation'] === 'admin') {
+      $_SESSION['userID'] = $row['id'];
+      header('Location: admin/admin_request.php');
+      exit();
+   } else {
+      header('Location: user_login.php');
+      exit();
    }
 }
 ?>
@@ -68,7 +65,7 @@ if (isset($_POST['verify_otp'])) {
 
       <form action="" method="post">
          <h3>OTP Verification</h3>
-         <input readonly class="box" value="<?php echo $_SESSION['email']; ?>">
+         <input readonly class="box" value="<?php echo $email; ?>">
          <input type="text" name="otp" id="otp" required placeholder="enter otp from email" maxlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="Verify OTP" class="btn" name="verify_otp">
       </form>

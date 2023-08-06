@@ -6,12 +6,13 @@ session_start();
 
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-} else {
-    $user_id = '44';
-}
+ } else {
+    $user_id = '';
+ }
 
-$designation = $_SESSION['designation'];
-if (!isset($designation)) {
+$userID = $_SESSION['userID'];
+
+if (!isset($userID)) {
     header('location:user_login.php');
 } else {
 
@@ -69,7 +70,7 @@ if (!isset($designation)) {
         <form action="" method="post">
             <h3>register now</h3>
             <label for="userID" style="font-size: 15px; margin-left: 150px;"> User ID: </label>
-            <input type="text" readonly name="userID" value="<?php echo $user_id; ?>">
+            <input type="text" readonly name="userID" value="<?php echo $userID; ?>">
             <input type="text" name="username" required placeholder="enter your username" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
             <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
             <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">

@@ -72,7 +72,6 @@ if (isset($_GET['delete'])) {
                   <p> user id: <span><?= $fetch_accounts['id']; ?></span> </p>
                   <p> user name: <span><?= $fetch_accounts['name']; ?></span> </p>
                   <p> username: <span><?= $fetch_accounts['username']; ?></span> </p>
-                  <p> password: <span><?= $fetch_accounts['password']; ?></span> </p>
                   <div class="flex-btn">
                      <a href="admin_accounts.php?action=accept&user_id=<?= $fetch_accounts['id']; ?>" onclick="return confirm('Accept this user as admin?')" class="option-btn">Accept</a>
                      <a href="admin_accounts.php?action=decline&user_id=<?= $fetch_accounts['id']; ?>" onclick="return confirm('Decline this user as admin?')" class="delete-btn">Decline</a>
