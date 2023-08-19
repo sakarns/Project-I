@@ -51,7 +51,7 @@ if (isset($message) && is_array($message)) {
             $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
          ?>
             <p><?= $fetch_profile["name"]; ?></p>
-            <p>as: <?= $fetch_profile["username"]; ?></p>
+            <p>un: <?= $fetch_profile["username"]; ?></p>
             <a href="update_user.php" class="btn">update profile</a>
             <a href="password_change.php" class="btn">change password</a>
             <div class="flex-btn">

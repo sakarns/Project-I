@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
 
             $mail->send();
          } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $message[] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
          }
          $_SESSION['email'] = $email;
          $_SESSION['user_id'] = $row['id'];
