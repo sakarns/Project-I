@@ -24,6 +24,8 @@ if (isset($_POST['submit'])) {
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $username = $_POST['username'];
+   $username = filter_var($username, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
    $cpass = sha1($_POST['cpass']);
@@ -47,8 +49,8 @@ if (isset($_POST['submit'])) {
       if ($pass != $cpass) {
          $message[] = 'Confirm password does not match!';
       } else {
-         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password, emailOTP) VALUES(?,?,?,?)");
-         $insert_user->execute([$name, $email, $cpass, $otp]);
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, username, password, emailOTP) VALUES(?,?,?,?,?)");
+         $insert_user->execute([$name, $email, $username, $cpass, $otp]);
          try {
             // Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
@@ -71,6 +73,7 @@ if (isset($_POST['submit'])) {
             $mail->Body    = 'Dear ' . $name . ',<br>
                Thank you for registering at nepalikrisak.com.np<br>
                Please use the following OTP to complete your registration:<br><br>
+               For Username: <b>' . $username . '</b><br>
                OTP: <b>' . $otp . '</b><br><br>
                If you have any questions or need further assistance, please feel free to contact us.<br><br>
                Best regards,<br>
@@ -81,7 +84,7 @@ if (isset($_POST['submit'])) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
          }
          $_SESSION['email'] = $email;
-         $_SESSION['userID'] = $row['id'];
+         $_SESSION['user_id'] = $row['id'];
          header('location:otp_verify.php');
          exit();
       }
@@ -116,8 +119,12 @@ if (isset($_POST['submit'])) {
          <h3>register now</h3>
          <input type="text" name="name" required placeholder="enter your fullname" maxlength="20" class="box">
          <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="text" name="username" required placeholder="enter unique username" maxlength="20" class="box">
          <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <select id="address" name="address" required class="box">
+            <option value="Kathnamdu" >Select District</option>
+         </select>
          <input type="submit" value="register now" class="btn" name="submit">
          <p>already have an account?</p>
          <a href="user_login.php" class="option-btn">login now</a>
@@ -129,6 +136,28 @@ if (isset($_POST['submit'])) {
    <?php include 'components/footer.php'; ?>
 
    <script src="js/script.js"></script>
+   <script>
+      // Array of 77 districts in Nepal
+      var districts = [
+         "Achham", "Arghakhanchi", "Baglung", "Baitadi", "Bajhang", "Bajura", "Banke", "Bara", "Bardiya", "Bhaktapur", "Bhojpur",
+         "Chitwan", "Dadeldhura", "Dailekh", "Dang", "Darchula", "Dhading", "Dhankuta", "Dhanusa", "Dolakha", "Dolpa", "Doti",
+         "Gorkha", "Gulmi", "Humla", "Ilam", "Jajarkot", "Jhapa", "Jumla", "Kailali", "Kalikot", "Kanchanpur", "Kapilvastu", "Kaski",
+         "Kathmandu", "Kavrepalanchok", "Khotang", "Lalitpur", "Lamjung", "Mahottari", "Makwanpur", "Manang", "Morang", "Mugu", "Mustang",
+         "Myagdi", "Nawalparasi", "Nuwakot", "Okhaldhunga", "Palpa", "Panchthar", "Parbat", "Parsa", "Pyuthan", "Ramechhap", "Rasuwa",
+         "Rautahat", "Rolpa", "Rukum", "Rupandehi", "Salyan", "Sankhuwasabha", "Saptari", "Sarlahi", "Sindhuli", "Sindhupalchok", "Siraha",
+         "Solukhumbu", "Sunsari", "Surkhet", "Syangja", "Tanahun", "Taplejung", "Terhathum", "Udayapur"
+      ];
+
+      var addressSelect = document.getElementById("address");
+
+      // Populate the dropdown options
+      districts.forEach(function(district) {
+         var option = document.createElement("option");
+         option.value = district;
+         option.text = district;
+         addressSelect.appendChild(option);
+      });
+   </script>
 
 </body>
 

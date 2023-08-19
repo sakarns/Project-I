@@ -26,15 +26,10 @@ if (isset($_POST['verify_otp'])) {
    if ($row && $row['emailOtp'] == $otp) {
       $update_user = $conn->prepare("UPDATE `users` SET isEmailVerify = 1, emailOtp = NULL WHERE email = ?");
       $update_user->execute([$email]);
+      $_SESSION['userID'] = $row['id'];
+      header('Location: user_login.php');
    } else {
       $message = "Invalid OTP!";
-   }
-   if ($row['designation'] === 'admin') {
-      $_SESSION['userID'] = $row['id'];
-      header('Location: admin/admin_request.php');
-      exit();
-   } else {
-      header('Location: user_login.php');
       exit();
    }
 }

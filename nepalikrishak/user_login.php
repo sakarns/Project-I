@@ -9,13 +9,13 @@ if (isset($_SESSION['user_id'])) {
 }
 
 if (isset($_POST['submit'])) {
-   $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $username = $_POST['username'];
+   $username = filter_var($username, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-   $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
-   $select_user->execute([$email, $pass]);
+   $select_user = $conn->prepare("SELECT * FROM `users` WHERE username = ? AND password = ?");
+   $select_user->execute([$username, $pass]);
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
    if ($select_user->rowCount() > 0) {
@@ -56,9 +56,10 @@ if (isset($_POST['submit'])) {
 
       <form action="" method="post">
          <h3>login now</h3>
-         <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="text" name="username" required placeholder="enter your username" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="login now" class="btn" name="submit">
+         <a href="forget_password.php" class="btn">forget password</a>
          <p>don't have an account?</p>
          <a href="user_register.php" class="option-btn">register now</a>
       </form>
