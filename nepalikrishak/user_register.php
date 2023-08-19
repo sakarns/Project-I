@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Load Composer's autoloader
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 session_start();
 
@@ -24,8 +24,6 @@ if (isset($_POST['submit'])) {
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
-   $designation = $_POST['designation'];
-   $designation = filter_var($designation, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
    $cpass = sha1($_POST['cpass']);
@@ -49,8 +47,8 @@ if (isset($_POST['submit'])) {
       if ($pass != $cpass) {
          $message[] = 'Confirm password does not match!';
       } else {
-         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, designation, password, emailOTP) VALUES(?,?,?,?,?)");
-         $insert_user->execute([$name, $email, $designation, $cpass, $otp]);
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password, emailOTP) VALUES(?,?,?,?)");
+         $insert_user->execute([$name, $email, $cpass, $otp]);
          try {
             // Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
@@ -83,7 +81,6 @@ if (isset($_POST['submit'])) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
          }
          $_SESSION['email'] = $email;
-         $_SESSION['designation'] = $designation;
          $_SESSION['userID'] = $row['id'];
          header('location:otp_verify.php');
          exit();
@@ -119,18 +116,11 @@ if (isset($_POST['submit'])) {
          <h3>register now</h3>
          <input type="text" name="name" required placeholder="enter your fullname" maxlength="20" class="box">
          <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-
-         <select name="designation" class="box">
-            <option value="user" selected>User</option>
-            <option value="admin">Admin</option>
-         </select>
-
          <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="submit" value="register now" class="btn" name="submit">
          <p>already have an account?</p>
          <a href="user_login.php" class="option-btn">login now</a>
-         <a href="otp_verify.php" class="option-btn">Verify Otp</a>
       </form>
 
    </section>

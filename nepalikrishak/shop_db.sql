@@ -31,15 +31,15 @@ CREATE TABLE `admins` (
   `id` int(100) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `userID` int(20) NOT NULL
+  `regDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `password`, `userID`) VALUES
-(1, 'admin', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 0);
+INSERT INTO `admins` (`id`, `username`, `password`) VALUES
+(1, 'admin', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2' );
 
 -- --------------------------------------------------------
 
@@ -118,8 +118,6 @@ CREATE TABLE `users` (
   `id` int(100) NOT NULL,
   `name` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `designation` varchar(25) NOT NULL,
-  `hasAdminAccount` int(1) DEFAULT 0,
   `password` varchar(50) NOT NULL,
   `regDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `emailOtp` int(6) DEFAULT NULL,

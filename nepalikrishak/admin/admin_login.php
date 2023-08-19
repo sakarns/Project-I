@@ -17,22 +17,14 @@ if (isset($_POST['submit'])) {
 
    if ($select_admin->rowCount() > 0) {
       $admin_id = $row['id'];
-      // Check user table for admin designation and hasAdminAccount value
-      $select_user = $conn->prepare("SELECT * FROM `users` WHERE id = ? AND designation = 'admin' AND hasAdminAccount = 1");
-      $select_user->execute([$admin_id]);
-      $user_row = $select_user->fetch(PDO::FETCH_ASSOC);
-      if ($user_row || $row['userID'] === 0) {
-         $_SESSION['admin_id'] = $admin_id;
+      if($select_admin->rowCount() > 0){
+         $_SESSION['admin_id'] = $row['id'];
          header('location:dashboard.php');
-         exit();
-      } else {
-          $message[] = 'You are not authorized to login as an admin.';
+      }else{
+         $message[] = 'incorrect username or password!';
       }
-  } else {
-      $message[] = 'Incorrect username or password!';
-  }
+   }
 }
-
 ?>
 
 <!DOCTYPE html>

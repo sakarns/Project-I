@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
    $cpass = sha1($_POST['cpass']);
    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
 
-   $select_admin = $conn->prepare("SELECT * FROM `admins` WHERE name = ?");
+   $select_admin = $conn->prepare("SELECT * FROM `admins` WHERE username = ?");
    $select_admin->execute([$name]);
 
    if ($select_admin->rowCount() > 0) {
