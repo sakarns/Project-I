@@ -84,7 +84,7 @@ if (isset($_POST['order'])) {
                   $total_products = implode($cart_items);
                   $grand_total += ($fetch_cart['price'] * $fetch_cart['quantity']);
             ?>
-                  <p> <?= $fetch_cart['name']; ?> <span>(<?= '$' . $fetch_cart['price'] . '/- x ' . $fetch_cart['quantity']; ?>)</span> </p>
+                  <p> <?= $fetch_cart['name']; ?> <span>(<?= 'Rs.' . $fetch_cart['price'] . '/- x ' . $fetch_cart['quantity']; ?>)</span> </p>
             <?php
                }
             } else {
@@ -93,7 +93,7 @@ if (isset($_POST['order'])) {
             ?>
             <input type="hidden" name="total_products" value="<?= $total_products; ?>">
             <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
-            <div class="grand-total">grand total : <span>$<?= $grand_total; ?>/-</span></div>
+            <div class="grand-total">grand total : <span>Rs.<?= $grand_total; ?>/-</span></div>
          </div>
 
          <h3>place your orders</h3>
@@ -115,9 +115,8 @@ if (isset($_POST['order'])) {
                <span>payment method :</span>
                <select name="method" class="box" required>
                   <option value="cash on delivery">cash on delivery</option>
-                  <option value="credit card">credit card</option>
-                  <option value="paytm">paytm</option>
-                  <option value="paypal">paypal</option>
+                  <option value="credit card">mobile banking</option>
+                  <option value="paytm">e-wallet</option>
                </select>
             </div>
             <div class="inputBox">
@@ -130,15 +129,15 @@ if (isset($_POST['order'])) {
             </div>
             <div class="inputBox">
                <span>city :</span>
-               <input type="text" name="city" placeholder="e.g. mumbai" class="box" maxlength="50" required>
+               <input type="text" name="city" placeholder="e.g. kathmandu" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>state :</span>
-               <input type="text" name="state" placeholder="e.g. maharashtra" class="box" maxlength="50" required>
+               <input type="text" name="state" placeholder="e.g. baneshwor" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>country :</span>
-               <input type="text" name="country" placeholder="e.g. India" class="box" maxlength="50" required>
+               <input type="text" name="country" placeholder="e.g. Nepal" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>pin code :</span>
