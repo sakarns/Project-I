@@ -22,6 +22,9 @@ include 'components/wishlist_cart.php';
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>category</title>
 
+   <!-- Swiper link -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -33,6 +36,9 @@ include 'components/wishlist_cart.php';
 <body>
 
    <?php include 'components/user_header.php'; ?>
+
+   <?php include 'category_slide.php'; ?>
+
 
    <section class="products">
 
@@ -73,11 +79,6 @@ include 'components/wishlist_cart.php';
       </div>
 
    </section>
-
-
-   <?php include 'components/footer.php'; ?>
-
-   <script src="js/script.js"></script>
 
 </body>
 

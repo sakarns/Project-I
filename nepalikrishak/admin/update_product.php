@@ -19,9 +19,11 @@ if (isset($_POST['update'])) {
    $price = filter_var($price, FILTER_SANITIZE_STRING);
    $details = $_POST['details'];
    $details = filter_var($details, FILTER_SANITIZE_STRING);
+   $category = $_POST['category'];
+   $category = filter_var($category, FILTER_SANITIZE_STRING);
 
-   $update_product = $conn->prepare("UPDATE `products` SET name = ?, price = ?, details = ? WHERE id = ?");
-   $update_product->execute([$name, $price, $details, $pid]);
+   $update_product = $conn->prepare("UPDATE `products` SET name = ?, category = ?, price = ?, details = ? WHERE id = ?");
+   $update_product->execute([$name, $category, $price, $details, $pid]);
 
    $message[] = 'product updated successfully!';
 
@@ -132,7 +134,20 @@ if (isset($_POST['update'])) {
                </div>
                <span>update name</span>
                <input type="text" name="name" required class="box" maxlength="100" placeholder="enter product name" value="<?= $fetch_products['name']; ?>">
-               <span>update price</span>
+               <span>update category</span>
+               <?php $category = $fetch_products['category'];?>
+               <select name="category" id="category" class="box" required>
+                  <option value="">Select a category</option>
+                  <option value="chemical-fertilizer">Chemical Fertilizer</option>
+                  <option value="insecticides">Insecticides</option>
+                  <option value="pesticides">Pesticides</option>
+                  <option value="gardening-tools">Gardening Tools</option>
+                  <option value="agricultural-equipments">Agricultural Equipments</option>
+                  <option value="protective-gears">Protective Gears</option>
+                  <option value="reproductive-crops">Reproductive Crops</option>
+                  <option value="reproductive-fruits">Reproductive Fruits</option>
+                  <option value="reproductive-vegetable">Reproductive Vegetables</option>
+               </select>
                <input type="number" name="price" required class="box" min="0" max="9999999999" placeholder="enter product price" onkeypress="if(this.value.length == 10) return false;" value="<?= $fetch_products['price']; ?>">
                <span>update details</span>
                <textarea name="details" class="box" required cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
@@ -159,6 +174,21 @@ if (isset($_POST['update'])) {
 
 
    <script src="../js/admin_script.js"></script>
+   <script>
+   // Get the category value from PHP and assign it to a JavaScript variable
+   var categoryValue = "<?php echo $category; ?>";
+
+   // Get the select element
+   var categorySelect = document.getElementById("category");
+
+   // Loop through the options and set the selected attribute for the matching category
+   for (var i = 0; i < categorySelect.options.length; i++) {
+      if (categorySelect.options[i].value === categoryValue) {
+         categorySelect.options[i].selected = true;
+         break;
+      }
+   }
+</script>
 
 </body>
 

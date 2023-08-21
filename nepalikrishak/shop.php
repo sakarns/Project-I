@@ -23,6 +23,9 @@ include 'components/wishlist_cart.php';
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>shop</title>
 
+      <!-- Swiper link -->
+      <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -34,6 +37,8 @@ include 'components/wishlist_cart.php';
 <body>
 
    <?php include 'components/user_header.php'; ?>
+
+   <?php include 'category_slide.php'; ?>
 
    <section class="products">
 
@@ -57,7 +62,7 @@ include 'components/wishlist_cart.php';
                   <img src="uploaded_img/<?= $fetch_product['image_01']; ?>" alt="">
                   <div class="name"><?= $fetch_product['name']; ?></div>
                   <div class="flex">
-                     <div class="price"><span>$</span><?= $fetch_product['price']; ?><span>/-</span></div>
+                     <div class="price"><span>Rs.</span><?= $fetch_product['price']; ?><span>/-</span></div>
                      <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
                   </div>
                   <input type="submit" value="add to cart" class="btn" name="add_to_cart">
