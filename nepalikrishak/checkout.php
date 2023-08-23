@@ -21,7 +21,7 @@ if (isset($_POST['order'])) {
    $email = filter_var($email, FILTER_SANITIZE_STRING);
    $method = $_POST['method'];
    $method = filter_var($method, FILTER_SANITIZE_STRING);
-   $address = 'flat no. ' . $_POST['flat'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['state'] . ', ' . $_POST['country'] . ' - ' . $_POST['pin_code'];
+   $address = ' ' . $_POST['house'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['district'] . ', ' . $_POST['state'] . ' - ' . $_POST['pin_code'];
    $address = filter_var($address, FILTER_SANITIZE_STRING);
    $total_products = $_POST['total_products'];
    $total_price = $_POST['total_price'];
@@ -120,24 +120,24 @@ if (isset($_POST['order'])) {
                </select>
             </div>
             <div class="inputBox">
-               <span>address line 01 :</span>
-               <input type="text" name="flat" placeholder="e.g. flat number" class="box" maxlength="50" required>
+               <span>house no. :</span>
+               <input type="text" name="house" placeholder="e.g. street name" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
-               <span>address line 02 :</span>
-               <input type="text" name="street" placeholder="e.g. street name" class="box" maxlength="50" required>
+               <span>village/street :</span>
+               <input type="text" name="street" placeholder="e.g. village/city name" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
-               <span>city :</span>
-               <input type="text" name="city" placeholder="e.g. kathmandu" class="box" maxlength="50" required>
+               <span>city/town :</span>
+               <input type="text" name="city" placeholder="e.g.Kavre " class="box" maxlength="50" required>
+            </div>
+            <div class="inputBox">
+               <span>district :</span>
+               <input type="text" name="district" placeholder="e.g. Bagmati" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>state :</span>
-               <input type="text" name="state" placeholder="e.g. baneshwor" class="box" maxlength="50" required>
-            </div>
-            <div class="inputBox">
-               <span>country :</span>
-               <input type="text" name="country" placeholder="e.g. Nepal" class="box" maxlength="50" required>
+               <input type="text" name="state" placeholder="e.g. Nepal" class="box" maxlength="50" required>
             </div>
             <div class="inputBox">
                <span>pin code :</span>
