@@ -1,71 +1,71 @@
 <body>
-<section class="category">
+   <section class="category">
 
-<h1 class="heading">shop by category</h1>
+      <h1 class="heading">shop by category</h1>
 
-<div class="swiper category-slider">
+      <div class="swiper category-slider">
 
-   <div class="swiper-wrapper">
+         <div class="swiper-wrapper">
 
-      <a href="category.php?category=chemical-fertilizer" class="swiper-slide slide">
-         <img src="images/home-icon-fertilizer.png" alt="">
-         <h3>Chemical Fertilizer</h3>
-      </a>
+            <a href="category.php?category=chemical-fertilizer" class="swiper-slide slide">
+               <img src="images/home-icon-fertilizer.png" alt="">
+               <h3>Chemical Fertilizer</h3>
+            </a>
 
-      <a href="category.php?category=insecticides" class="swiper-slide slide">
-         <img src="images/home-icon-insecticides.webp" alt="">
-         <h3>Insecticides</h3>
-      </a>
+            <a href="category.php?category=insecticides" class="swiper-slide slide">
+               <img src="images/home-icon-insecticides.webp" alt="">
+               <h3>Insecticides</h3>
+            </a>
 
-      <a href="category.php?category=pesticides" class="swiper-slide slide">
-         <img src="images/home-icon-pesticides.png" alt="">
-         <h3>Pesticides</h3>
-      </a>
+            <a href="category.php?category=pesticides" class="swiper-slide slide">
+               <img src="images/home-icon-pesticides.png" alt="">
+               <h3>Pesticides</h3>
+            </a>
 
-      <a href="category.php?category=gardening-tools" class="swiper-slide slide">
-         <img src="images/home-icon-guardening-tools.png" alt="">
-         <h3>Gardening Tools</h3>
-      </a>
+            <a href="category.php?category=gardening-tools" class="swiper-slide slide">
+               <img src="images/home-icon-guardening-tools.png" alt="">
+               <h3>Gardening Tools</h3>
+            </a>
 
-      <a href="category.php?category=agricultural-equipments" class="swiper-slide slide">
-         <img src="images/home-icon-agricultural-equipments.png" alt="">
-         <h3>Agricultural Equipments</h3>
-      </a>
+            <a href="category.php?category=agricultural-equipments" class="swiper-slide slide">
+               <img src="images/home-icon-agricultural-equipments.png" alt="">
+               <h3>Agricultural Equipments</h3>
+            </a>
 
-      <a href="category.php?category=protective-gears" class="swiper-slide slide">
-         <img src="images/home-icon-protective-gears.webp" alt="">
-         <h3>Protective Gears</h3>
-      </a>
+            <a href="category.php?category=protective-gears" class="swiper-slide slide">
+               <img src="images/home-icon-protective-gears.webp" alt="">
+               <h3>Protective Gears</h3>
+            </a>
 
-      <a href="category.php?category=reproductive-seeds" class="swiper-slide slide">
-         <img src="images/home-icon-reprodutive-seeds.webp" alt="">
-         <h3>Reproductive Seeds</h3>
-      </a>
+            <a href="category.php?category=reproductive-crops" class="swiper-slide slide">
+               <img src="images/home-icon-reprodutive-seeds.webp" alt="">
+               <h3>Reproductive Crops</h3>
+            </a>
 
-      <a href="category.php?category=reproductive-fruits" class="swiper-slide slide">
-         <img src="images/home-icon-reproductive-fruits.webp" alt="">
-         <h3>Reproductive Fruits</h3>
-      </a>
+            <a href="category.php?category=reproductive-fruits" class="swiper-slide slide">
+               <img src="images/home-icon-reproductive-fruits.webp" alt="">
+               <h3>Reproductive Fruits</h3>
+            </a>
 
-      <a href="category.php?category=reproductive-vegetable" class="swiper-slide slide">
-         <img src="images/home-icon-reproductive-vegetables.webp" alt="">
-         <h3>Reproductive Vegetables</h3>
-      </a>
+            <a href="category.php?category=reproductive-vegetables" class="swiper-slide slide">
+               <img src="images/home-icon-reproductive-vegetables.webp" alt="">
+               <h3>Reproductive Vegetables</h3>
+            </a>
 
-   </div>
+         </div>
 
-   <div class="swiper-pagination"></div>
+         <div class="swiper-pagination"></div>
 
-</div>
+      </div>
 
-</section>
+   </section>
 
 
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
-<script src="js/script.js"></script>
+   <script src="js/script.js"></script>
 
-<script>
+   <script>
       var swiper = new Swiper(".home-slider", {
          loop: true,
          spaceBetween: 20,
@@ -119,4 +119,4 @@
       });
    </script>
 
-   </body>
+</body>

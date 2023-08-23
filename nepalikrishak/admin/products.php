@@ -128,7 +128,7 @@ if (isset($_GET['delete'])) {
                   <option value="protective-gears">Protective Gears</option>
                   <option value="reproductive-crops">Reproductive Crops</option>
                   <option value="reproductive-fruits">Reproductive Fruits</option>
-                  <option value="reproductive-vegetable">Reproductive Vegetables</option>
+                  <option value="reproductive-vegetables">Reproductive Vegetables</option>
                </select>
             </div>
             <div class="inputBox">

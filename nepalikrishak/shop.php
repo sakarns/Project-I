@@ -23,8 +23,8 @@ include 'components/wishlist_cart.php';
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>shop</title>
 
-      <!-- Swiper link -->
-      <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+   <!-- Swiper link -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -41,14 +41,46 @@ include 'components/wishlist_cart.php';
    <?php include 'category_slide.php'; ?>
 
    <section class="products">
-
-      <h1 class="heading">latest products</h1>
-
+      <h1 class="heading">latest products
+         <div class="option-bar ">
+            <form action="" method="post">
+               <select name="sort" required style="width: 20%; display: inline-block; " class="btn onchange="this.form.submit()">
+                  <option value="">Sort</option>
+                  <option value="1">A-Z</option>
+                  <option value="2">Z-A</option>
+                  <option value="3">Lower Price</option>
+                  <option value="4">Higher Price</option>
+               </select>
+            </form>
+         </div>
+      </h1>
       <div class="box-container">
 
          <?php
-         $select_products = $conn->prepare("SELECT * FROM `products`");
+
+         $sortOption = $_POST['sort'] ?? '1';
+         $orderClause = '';
+
+         switch ($sortOption) {
+            case '1':
+               $orderClause = "`name` ASC";
+               break;
+            case '2':
+               $orderClause = "`name` DESC";
+               break;
+            case '3':
+               $orderClause = "`price` ASC";
+               break;
+            case '4':
+               $orderClause = "`price` DESC";
+               break;
+            default:
+               $orderClause = "`name` ASC";
+         }
+
+         $select_products = $conn->prepare("SELECT * FROM `products` ORDER BY $orderClause");
          $select_products->execute();
+
          if ($select_products->rowCount() > 0) {
             while ($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)) {
          ?>
