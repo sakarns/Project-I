@@ -44,8 +44,8 @@ include 'components/wishlist_cart.php';
       <h1 class="heading">latest products
          <div class="option-bar ">
             <form action="" method="post">
-               <select name="sort" required style="width: 20%; display: inline-block; " class="btn onchange="this.form.submit()">
-                  <option value="">Sort</option>
+               <select name="sort" required style="width: 20%; display: inline-block;" class="btn" onchange="this.form.submit()">
+                  <option value="">Sort By</option>
                   <option value="1">A-Z</option>
                   <option value="2">Z-A</option>
                   <option value="3">Lower Price</option>
@@ -58,7 +58,7 @@ include 'components/wishlist_cart.php';
 
          <?php
 
-         $sortOption = $_POST['sort'] ?? '1';
+         $sortOption = $_POST['sort'] ?? 'default';
          $orderClause = '';
 
          switch ($sortOption) {
@@ -75,7 +75,7 @@ include 'components/wishlist_cart.php';
                $orderClause = "`price` DESC";
                break;
             default:
-               $orderClause = "`name` ASC";
+               $orderClause = "`id` DESC";
          }
 
          $select_products = $conn->prepare("SELECT * FROM `products` ORDER BY $orderClause");

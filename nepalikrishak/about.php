@@ -45,7 +45,7 @@ if (isset($_SESSION['user_id'])) {
 
          <div class="content">
             <h3>why choose us?</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam veritatis minus et similique doloribus? Harum molestias tenetur eaque illum quas? Obcaecati nulla in itaque modi magnam ipsa molestiae ullam consequuntur.</p>
+            <p>Choose us as your agricultural e-commerce destination for a seamless shopping experience. With our wide range of high-quality products, convenient browsing, and user-friendly interface, finding the right tools, equipment, fertilizers, and reproductive seeds has never been easier. We prioritize product quality and offer competitive pricing, ensuring you get the best value for your investment. Our dedicated customer service team is ready to assist you, providing prompt and friendly support. Trust us to meet your farming needs and elevate your agricultural practices with confidence.</p>
             <a href="contact.php" class="btn">contact us</a>
          </div>
 
@@ -63,7 +63,7 @@ if (isset($_SESSION['user_id'])) {
 
             <div class="swiper-slide slide">
                <img src="images/pic-1.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
+               <p>This agricultural e-commerce website is a farmer's dream come true. With its user-friendly interface, I easily found a wide range of high-quality equipment, tools, fertilizers, and reproductive seeds. The competitive pricing and frequent discounts helped optimize my farming budget. I highly recommend this platform to fellow farmers for all their agricultural needs.</p>
                <div class="stars">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -71,12 +71,12 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Hari Bahadur Lamsal</h3>
             </div>
 
             <div class="swiper-slide slide">
                <img src="images/pic-2.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
+               <p>Discover the ultimate agricultural e-commerce hub, where farmers thrive. This platform offers a seamless experience, with a vast selection of agricultural priorities. Competitive pricing and efficient delivery make it a go-to for cost-conscious farmers. Embrace the future of farming and unlock your full potential with this exceptional online resource.</p>
                <div class="stars">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -84,12 +84,12 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Fulmaya Tamang</h3>
             </div>
 
             <div class="swiper-slide slide">
                <img src="images/pic-3.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
+               <p>Revolutionize your farming experience with our cutting-edge agricultural e-commerce platform. Explore a diverse range of high-quality facilities all at your fingertips. Enjoy competitive prices, swift delivery, and unparalleled customer service. Elevate your farming journey with us and achieve outstanding results.</p>
                <div class="stars">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -97,12 +97,12 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Jagatman Rai</h3>
             </div>
 
             <div class="swiper-slide slide">
                <img src="images/pic-4.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
+               <p>Unleash your farming potential with our premier agricultural e-commerce destination. Experience seamless transactions, prompt delivery, and exceptional customer support. Elevate your farming game with confidence and convenience.</p>
                <div class="stars">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -110,12 +110,12 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Rama Bhattrai</h3>
             </div>
 
             <div class="swiper-slide slide">
                <img src="images/pic-5.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
+               <p>Experience farming excellence with our premier agricultural e-commerce platform. Discover a vast selection of top-quality products. Benefit from competitive prices, fast delivery, and exceptional customer service. Elevate your farming practices and achieve remarkable results with us. Start exploring today and unlock your farm's full potential.</p>
                <div class="stars">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -123,12 +123,12 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Krishna Shah</h3>
             </div>
 
             <div class="swiper-slide slide">
                <img src="images/pic-6.png" alt="">
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia tempore distinctio hic, iusto adipisci a rerum nemo perspiciatis fugiat sapiente.</p>
+               <p>Transform your farming journey with our agricultural e-commerce haven. Explore a range of superior supplies with knowledge. Enjoy cost-effective prices, swift delivery, and exceptional support. Elevate your farming endeavors and reap the rewards. Unleash your farm's true potential now.</p>
                <div class="stars">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -136,7 +136,7 @@ if (isset($_SESSION['user_id'])) {
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star-half-alt"></i>
                </div>
-               <h3>john deo</h3>
+               <h3>Juna Pandey</h3>
             </div>
 
          </div>
