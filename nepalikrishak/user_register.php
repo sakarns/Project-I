@@ -30,6 +30,8 @@ if (isset($_POST['submit'])) {
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
    $cpass = sha1($_POST['cpass']);
    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $address = $_POST['address'];
+   $address = filter_var($address, FILTER_SANITIZE_STRING);
 
    // Generating 6 Digit Random OTP
    $otp = mt_rand(100000, 999999);
@@ -49,8 +51,8 @@ if (isset($_POST['submit'])) {
       if ($pass != $cpass) {
          $message[] = 'Confirm password does not match!';
       } else {
-         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, username, password, emailOTP) VALUES(?,?,?,?,?)");
-         $insert_user->execute([$name, $email, $username, $cpass, $otp]);
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, username, password, address, emailOTP) VALUES(?,?,?,?,?,?)");
+         $insert_user->execute([$name, $email, $username, $cpass, $address, $otp]);
          try {
             // Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
@@ -119,7 +121,7 @@ if (isset($_POST['submit'])) {
          <h3>register now</h3>
          <input type="text" name="name" required placeholder="enter your fullname" maxlength="20" class="box">
          <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="text" name="username" required placeholder="enter unique username" maxlength="20" class="box">
+         <input type="text" name="username" required placeholder="enter unique username" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="enter your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <select id="address" name="address" required class="box">
