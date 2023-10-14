@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'OTP verification for Registration !!!';
             $mail->Body    = 'Dear ' . $name . ',<br>
-               Thank you for registering at nepalikrisak.com.np<br>
+               Thank you for registering at NepaliKrishak.<br>
                Please use the following OTP to complete your registration:<br><br>
                For Username: <b>' . $username . '</b><br>
                OTP: <b>' . $otp . '</b><br><br>

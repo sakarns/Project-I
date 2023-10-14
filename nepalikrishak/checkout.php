@@ -2,6 +2,15 @@
 
 include 'components/connect.php';
 
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Load Composer's autoloader
+require '../vendor/autoload.php';
+
 session_start();
 
 if (isset($_SESSION['user_id'])) {
@@ -10,6 +19,9 @@ if (isset($_SESSION['user_id'])) {
    $user_id = '';
    header('location:user_login.php');
 };
+
+   // Create an instance; passing `true` enables exceptions
+   $mail = new PHPMailer(true);
 
 if (isset($_POST['order'])) {
 
@@ -37,10 +49,48 @@ if (isset($_POST['order'])) {
       $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
       $delete_cart->execute([$user_id]);
 
-      $message[] = 'order placed successfully!';
+      try {
+         // Server settings
+         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+         $mail->isSMTP();                                            // Send using SMTP
+         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
+         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+         $mail->Username   = 'mainalisakar222@gmail.com';             // SMTP username
+         $mail->Password   = 'xtjioswjjqxvdauc';                      // SMTP password
+         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Enable implicit TLS encryption
+         $mail->Port       = 465;                                    // TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+         // Recipients
+         $mail->setFrom('mainalisakar222@gmail.com', 'Sakar');
+         $mail->addAddress($email, $name);     // Add a recipient
+         $mail->addReplyTo('mainalisakar222@gmail.com', 'Sakar');
+
+         // Content
+         $mail->isHTML(true);                                  // Set email format to HTML
+         $mail->Subject = 'New Order Placed';
+         $mail->Body    = 'Dear ' . $name . ',<br>
+            Thank you for shopping from NepaliKrishak.<br><br>
+            Details:<br>
+            Name: <b>' . $name . '</b><br>
+            Number: <b>' . $number . '</b><br>
+            Paynment Method: <b>' . $method . '</b><br>
+            Address: <b>' . $address . '</b><br>
+            Products: <b>' . $total_products . '</b><br>
+            Total Price: <b>Rs.' . $total_price . '</b><br><br>
+            If you have any questions or need further assistance, please feel free to contact us.<br><br>
+            Best regards,<br>
+            nepalikrishak.pvt.ltd';
+
+         $mail->send();
+      } catch (Exception $e) {
+         $message[] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+      }
+      header('location:cart.php');
+      exit();
+   }
+
    } else {
       $message[] = 'your cart is empty';
-   }
 }
 
 ?>
